@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="lilies">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<meta name="theme-color" content="#7a8e90" />
+<title>Send88</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Serif+Display&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RESET
+============================================================ */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;}
+html,body{height:100%;}
+body{
+  font-family:var(--font-body);
+  color:var(--text);
+  background:var(--bg-1);
+  background-image:radial-gradient(ellipse at 50% -10%, var(--bg-1) 0%, var(--bg-2) 55%, var(--bg-3) 100%);
+  height:100dvh;overflow:hidden;
+  display:flex;justify-content:center;align-items:center;
+  -webkit-font-smoothing:antialiased;
+  transition:background-color .4s ease,color .4s ease;
+}
+
+/* ============================================================
+   THEMES
+============================================================ */
+:root[data-theme="lilies"]{
+  --bg-1:#829597; --bg-2:#5d7173; --bg-3:#415556;
+  --surface:#ece3d1; --surface-2:#ded2b7; --surface-hi:#f6efe0;
+  --border:rgba(42,42,42,.16); --border-hi:rgba(42,42,42,.42);
+  --text:#2a2a2a; --text-dim:rgba(42,42,42,.55); --text-inv:#ece3d1;
+  --accent:#4d6b3a; --accent-hi:#3a5529; --accent-soft:rgba(77,107,58,.12);
+  --danger:#963a3a;
+  --font-display:'Cormorant Garamond','Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --font-body:'EB Garamond',Georgia,'Times New Roman',serif;
+  --radius:6px; --radius-sm:4px; --radius-lg:10px;
+  --shadow:0 2px 14px rgba(0,0,0,.18);
+  --shadow-hi:0 6px 24px rgba(0,0,0,.28);
+  --track:rgba(42,42,42,.10);
+}
+:root[data-theme="clouds"]{
+  --bg-1:#d78ba1; --bg-2:#c5758c; --bg-3:#b1647c;
+  --surface:#fdf6f3; --surface-2:#f7e9e4; --surface-hi:#ffffff;
+  --border:rgba(26,26,26,.9); --border-hi:#1a1a1a;
+  --text:#1a1a1a; --text-dim:rgba(26,26,26,.55); --text-inv:#fdf6f3;
+  --accent:#1a1a1a; --accent-hi:#000; --accent-soft:rgba(26,26,26,.08);
+  --danger:#c23b3b;
+  --font-display:'Quicksand','Avenir Next','Trebuchet MS',system-ui,sans-serif;
+  --font-body:'Quicksand','Avenir Next','Trebuchet MS',system-ui,sans-serif;
+  --radius:18px; --radius-sm:12px; --radius-lg:26px;
+  --shadow:0 3px 0 rgba(26,26,26,.15);
+  --shadow-hi:0 5px 0 rgba(26,26,26,.22);
+  --track:rgba(26,26,26,.08);
+}
+:root[data-theme="pastoral"]{
+  --bg-1:#6b4523; --bg-2:#4a2f1a; --bg-3:#33200f;
+  --surface:#ebe2c8; --surface-2:#dccfad; --surface-hi:#f4ecd6;
+  --border:rgba(58,40,23,.22); --border-hi:rgba(58,40,23,.5);
+  --text:#3a2817; --text-dim:rgba(58,40,23,.6); --text-inv:#ebe2c8;
+  --accent:#5f7043; --accent-hi:#47552f; --accent-soft:rgba(95,112,67,.14);
+  --danger:#8b3a2a;
+  --font-display:'DM Serif Display','Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --font-body:'EB Garamond',Georgia,'Times New Roman',serif;
+  --radius:4px; --radius-sm:3px; --radius-lg:6px;
+  --shadow:0 2px 12px rgba(0,0,0,.22);
+  --shadow-hi:0 6px 22px rgba(0,0,0,.34);
+  --track:rgba(58,40,23,.12);
+}
+
+/* ============================================================
+   CLOUDS DECOR
+============================================================ */
+:root[data-theme="clouds"] body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 44'><path d='M20 34 Q5 34 5 24 Q5 13 19 15 Q23 4 35 6 Q43 0 53 6 Q64 1 71 12 Q83 10 85 24 Q85 34 73 34 Z' fill='%23ffffff' stroke='%231a1a1a' stroke-width='1.6' stroke-linejoin='round'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 44'><path d='M20 34 Q5 34 5 24 Q5 13 19 15 Q23 4 35 6 Q43 0 53 6 Q64 1 71 12 Q83 10 85 24 Q85 34 73 34 Z' fill='%23ffffff' stroke='%231a1a1a' stroke-width='1.6' stroke-linejoin='round'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 44'><path d='M20 34 Q5 34 5 24 Q5 13 19 15 Q23 4 35 6 Q43 0 53 6 Q64 1 71 12 Q83 10 85 24 Q85 34 73 34 Z' fill='%23ffffff' stroke='%231a1a1a' stroke-width='1.6' stroke-linejoin='round'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 44'><path d='M20 34 Q5 34 5 24 Q5 13 19 15 Q23 4 35 6 Q43 0 53 6 Q64 1 71 12 Q83 10 85 24 Q85 34 73 34 Z' fill='%23ffffff' stroke='%231a1a1a' stroke-width='1.6' stroke-linejoin='round'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 44'><path d='M20 34 Q5 34 5 24 Q5 13 19 15 Q23 4 35 6 Q43 0 53 6 Q64 1 71 12 Q83 10 85 24 Q85 34 73 34 Z' fill='%23ffffff' stroke='%231a1a1a' stroke-width='1.6' stroke-linejoin='round'/></svg>");
+  background-repeat:no-repeat;
+  background-position:
+    -10px 6%,
+    calc(100% + 20px) 12%,
+    -30px 42%,
+    calc(100% + 15px) 62%,
+    -20px 88%;
+  background-size:100px auto,130px auto,80px auto,110px auto,90px auto;
+  opacity:.85;
+}
+
+/* ============================================================
+   COMMON
+============================================================ */
+.surface{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  position:relative;
+}
+:root[data-theme="lilies"] .surface{
+  box-shadow:var(--shadow), inset 0 0 0 1px rgba(255,255,255,.5), inset 0 0 0 4px var(--surface), inset 0 0 0 5px rgba(42,42,42,.18);
+}
+
+/* ============================================================
+   PIN GATE
+============================================================ */
+.pin-gate{
+  position:fixed;inset:0;z-index:200;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;
+  padding:28px;text-align:center;
+}
+.pin-gate.hidden{display:none;}
+.pin-gate .logo{
+  font-family:var(--font-display);
+  font-size:2.6rem;font-weight:600;letter-spacing:.14em;
+  color:var(--text-inv);
+  text-shadow:0 2px 18px rgba(0,0,0,.35);
+}
+.pin-gate .tag{
+  font-family:var(--font-body);
+  font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--text-inv);opacity:.7;margin-top:-14px;
+}
+.pin-card{
+  display:flex;flex-direction:column;gap:14px;align-items:center;
+  padding:26px 24px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-hi);
+  width:100%;max-width:300px;
+}
+.pin-card p{
+  color:var(--text);opacity:.7;font-size:.85rem;line-height:1.5;
+  font-family:var(--font-body);margin-bottom:4px;
+}
+.pin-input{
+  width:100%;text-align:center;letter-spacing:.5em;
+  font-family:var(--font-display);
+  font-size:1.6rem;font-weight:600;
+  background:var(--surface-2);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:12px 8px 12px 20px;
+  color:var(--text);outline:none;
+  transition:border-color .2s,box-shadow .2s;
+}
+.pin-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);}
+.pin-error{color:var(--danger);font-size:.72rem;height:14px;font-family:var(--font-body);}
+.pin-submit{
+  padding:12px 30px;border-radius:var(--radius-sm);border:none;cursor:pointer;
+  background:var(--accent);color:var(--text-inv);
+  font-family:var(--font-body);font-weight:600;
+  font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;
+  transition:background .15s,transform .15s;
+  box-shadow:0 3px 0 var(--accent-hi);
+}
+.pin-submit:active{transform:translateY(2px);box-shadow:0 1px 0 var(--accent-hi);}
+
+/* ============================================================
+   APP SHELL
+============================================================ */
+.app-container{
+  display:none;flex-direction:column;height:100%;width:100%;
+  max-width:520px;margin:0 auto;
+  padding:env(safe-area-inset-top) 14px env(safe-area-inset-bottom) 14px;
+  gap:10px;position:relative;z-index:1;
+}
+.app-container.show{display:flex;}
+
+/* ============================================================
+   HEADER
+============================================================ */
+.header{
+  padding:10px 14px;display:flex;justify-content:space-between;align-items:center;
+  gap:10px;flex-shrink:0;
+}
+.logo{
+  font-family:var(--font-display);
+  font-size:1.35rem;font-weight:600;letter-spacing:.14em;
+  color:var(--text);
+}
+.header-right{display:flex;align-items:center;gap:8px;}
+.status-badge{
+  display:flex;align-items:center;gap:6px;
+  font-family:var(--font-body);
+  font-size:.62rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  padding:5px 10px;border-radius:999px;
+  background:var(--accent-soft);color:var(--accent);
+  border:1px solid var(--border);
+  transition:all .3s ease;
+}
+.status-badge.disconnected{background:rgba(150,58,58,.12);color:var(--danger);border-color:var(--danger);}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);}
+.status-badge.disconnected .status-dot{background:var(--danger);}
+
+/* ============================================================
+   THEME SWITCHER
+============================================================ */
+.theme-switcher{
+  display:flex;gap:5px;align-items:center;
+  padding:4px 6px;border-radius:999px;
+  background:var(--surface-2);
+  border:1px solid var(--border);
+}
+.theme-dot{
+  width:13px;height:13px;border-radius:50%;
+  border:1.5px solid transparent;cursor:pointer;padding:0;
+  transition:transform .15s,border-color .15s;
+}
+.theme-dot[data-theme-pick="lilies"]{background:linear-gradient(135deg,#829597,#ece3d1);}
+.theme-dot[data-theme-pick="clouds"]{background:linear-gradient(135deg,#d78ba1,#fdf6f3);}
+.theme-dot[data-theme-pick="pastoral"]{background:linear-gradient(135deg,#6b4523,#ebe2c8);}
+.theme-dot.active{border-color:var(--text);transform:scale(1.15);}
+
+/* ============================================================
+   TABS
+============================================================ */
+.tabs{
+  display:flex;gap:4px;padding:4px;flex-shrink:0;
+  background:var(--surface-2);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+}
+.tab{
+  flex:1;text-align:center;padding:11px 6px;
+  font-family:var(--font-body);
+  font-size:.78rem;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--text-dim);
+  border-radius:calc(var(--radius) - 2px);
+  cursor:pointer;border:1px solid transparent;
+  transition:all .2s ease;
+}
+.tab.active{
+  background:var(--surface);color:var(--text);
+  border-color:var(--border);
+  box-shadow:var(--shadow);
+}
+:root[data-theme="clouds"] .tab.active{
+  background:var(--accent);color:var(--text-inv);border-color:var(--accent);
+}
+
+/* ============================================================
+   MAIN / PANELS / STAGES
+============================================================ */
+main{flex:1;display:flex;min-height:0;}
+.tab-panel{display:none;flex-direction:column;flex:1;gap:12px;min-height:0;}
+.tab-panel.active{display:flex;}
+.stage{display:none;flex-direction:column;flex:1;gap:12px;min-height:0;}
+.stage.active{display:flex;}
+
+/* ============================================================
+   DROPZONE
+============================================================ */
+.dropzone{
+  flex:1;min-height:220px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:14px;padding:28px 20px;cursor:pointer;
+  transition:transform .2s ease,border-color .2s ease;
+}
+.dropzone:hover{border-color:var(--border-hi);}
+.dropzone:active{transform:scale(.99);}
+.drop-icon{
+  width:74px;height:74px;border-radius:50%;
+  background:var(--accent-soft);
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  animation:breathe 3.6s ease-in-out infinite;
+}
+.drop-icon svg{stroke:var(--accent);}
+@keyframes breathe{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.045);}
+}
+.drop-title{
+  font-family:var(--font-display);
+  font-size:1.25rem;font-weight:600;letter-spacing:.02em;
+  color:var(--text);
+}
+.drop-sub{
+  font-family:var(--font-body);
+  font-size:.78rem;color:var(--text-dim);
+  text-align:center;line-height:1.6;max-width:250px;
+}
+
+/* ============================================================
+   QUEUE
+============================================================ */
+.queue{display:flex;flex-direction:column;gap:6px;max-height:200px;overflow-y:auto;padding-right:2px;}
+.queue:empty{display:none;}
+.file-item{
+  display:flex;align-items:center;gap:10px;padding:10px 12px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  animation:slideIn .3s cubic-bezier(.2,.9,.3,1.1) both;
+}
+@keyframes slideIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
+.file-item.removing{animation:slideOut .2s ease forwards;}
+@keyframes slideOut{to{opacity:0;transform:translateX(20px);}}
+.file-icon{
+  width:36px;height:36px;border-radius:var(--radius-sm);flex-shrink:0;
+  background:var(--accent-soft);
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-body);font-size:.6rem;font-weight:700;
+  color:var(--accent);letter-spacing:.04em;
+}
+.file-info{flex:1;min-width:0;}
+.file-name{
+  font-family:var(--font-body);
+  font-size:.84rem;font-weight:600;color:var(--text);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.file-size{font-size:.68rem;color:var(--text-dim);margin-top:2px;font-family:var(--font-body);}
+.file-remove{
+  width:26px;height:26px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:transparent;color:var(--text-dim);
+  font-size:1.1rem;cursor:pointer;line-height:1;
+  border:1px solid transparent;transition:all .15s;
+}
+.file-remove:active{background:var(--accent-soft);color:var(--danger);border-color:var(--border);}
+
+/* ============================================================
+   BUTTONS
+============================================================ */
+.send-btn{
+  padding:16px;border-radius:var(--radius-sm);border:none;cursor:pointer;flex-shrink:0;
+  background:var(--accent);color:var(--text-inv);
+  font-family:var(--font-body);font-weight:700;
+  font-size:.9rem;letter-spacing:.15em;text-transform:uppercase;
+  box-shadow:0 3px 0 var(--accent-hi);
+  transition:transform .12s,box-shadow .12s,background .2s;
+}
+.send-btn:disabled{
+  opacity:.4;cursor:not-allowed;box-shadow:none;
+  background:var(--surface-2);color:var(--text-dim);
+}
+.send-btn:not(:disabled):active{transform:translateY(2px);box-shadow:0 1px 0 var(--accent-hi);}
+
+/* ============================================================
+   SENDING STAGE
+============================================================ */
+.sending-wrap{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:22px;padding:16px;
+}
+.progress-ring{
+  --progress:0;
+  width:184px;height:184px;border-radius:50%;position:relative;
+  background:conic-gradient(
+    from -90deg,
+    var(--accent) 0%,
+    var(--accent) calc(var(--progress) * 1%),
+    var(--track) calc(var(--progress) * 1%),
+    var(--track) 100%
+  );
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow);
+}
+.progress-ring::after{
+  content:'';position:absolute;inset:12px;border-radius:50%;
+  background:var(--surface);
+  border:1px solid var(--border);
+}
+.progress-ring .inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:2px;}
+.pct{
+  font-family:var(--font-display);
+  font-size:2.8rem;font-weight:600;letter-spacing:-.02em;
+  color:var(--text);line-height:1;
+}
+.pct span{font-size:1.4rem;opacity:.5;margin-left:2px;}
+.pct-label{
+  font-family:var(--font-body);
+  font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;
+  color:var(--text-dim);margin-top:4px;
+}
+.status-line{
+  font-family:var(--font-display);
+  font-size:1.15rem;font-weight:500;font-style:italic;
+  color:var(--text);text-align:center;min-height:26px;
+  animation:fadeSwap .4s ease;
+}
+@keyframes fadeSwap{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;width:100%;max-width:380px;}
+.metric{
+  padding:10px 6px;text-align:center;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+}
+.metric-label{
+  font-family:var(--font-body);
+  font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--text-dim);margin-bottom:4px;
+}
+.metric-value{
+  font-family:var(--font-display);
+  font-size:.95rem;font-weight:600;color:var(--text);
+  font-variant-numeric:tabular-nums;
+}
+.file-ticker{
+  width:100%;max-width:380px;max-height:80px;overflow:hidden;
+  display:flex;flex-direction:column;gap:3px;align-items:center;
+}
+.ticker-line{
+  font-family:var(--font-body);
+  font-size:.72rem;font-style:italic;color:var(--text-dim);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;
+  animation:fadeIn .3s ease;
+}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
+/* ============================================================
+   DONE STAGE
+============================================================ */
+.done-wrap{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:16px;padding:20px;
+}
+.success-burst{
+  width:112px;height:112px;border-radius:50%;
+  background:var(--accent-soft);
+  border:1.5px solid var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  animation:burst .7s cubic-bezier(.2,.9,.3,1.15) both;
+}
+@keyframes burst{
+  0%{transform:scale(0);opacity:0;}
+  60%{transform:scale(1.12);}
+  100%{transform:scale(1);opacity:1;}
+}
+.success-burst svg{width:48px;height:48px;stroke:var(--accent);stroke-width:2.4;fill:none;
+  stroke-linecap:round;stroke-linejoin:round;}
+.success-burst svg path{
+  stroke-dasharray:40;stroke-dashoffset:40;
+  animation:draw .55s .3s ease forwards;
+}
+@keyframes draw{to{stroke-dashoffset:0;}}
+.done-title{
+  font-family:var(--font-display);
+  font-size:2rem;font-weight:600;letter-spacing:.01em;
+  color:var(--text);
+}
+.done-sub{
+  font-family:var(--font-body);font-style:italic;
+  font-size:.88rem;color:var(--text-dim);
+  text-align:center;max-width:300px;line-height:1.6;
+}
+.done-list{width:100%;max-width:380px;max-height:140px;overflow-y:auto;display:flex;flex-direction:column;gap:5px;}
+.done-item{
+  display:flex;align-items:center;gap:10px;padding:8px 12px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  font-family:var(--font-body);font-size:.74rem;
+}
+.done-item .tick{color:var(--accent);font-weight:700;}
+.done-item .name{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text);}
+.done-item .sz{color:var(--text-dim);font-size:.66rem;font-variant-numeric:tabular-nums;}
+
+/* ============================================================
+   RECEIVE PANEL
+============================================================ */
+.receive-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 14px;flex-shrink:0;gap:10px;
+}
+.receive-head .label{
+  font-family:var(--font-display);
+  font-size:1rem;font-weight:600;color:var(--text);letter-spacing:.02em;
+}
+.receive-head .sub{
+  font-family:var(--font-body);font-style:italic;
+  font-size:.72rem;color:var(--text-dim);margin-top:2px;
+}
+.refresh-btn{
+  display:flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:50%;
+  background:var(--surface-2);
+  border:1px solid var(--border);
+  color:var(--text);cursor:pointer;flex-shrink:0;
+  transition:transform .4s ease,background .2s;
+}
+.refresh-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.refresh-btn:active{background:var(--accent-soft);}
+.refresh-btn.spinning{transform:rotate(360deg);}
+
+.receive-list{
+  flex:1;overflow-y:auto;
+  display:flex;flex-direction:column;gap:6px;
+  padding-right:2px;min-height:0;
+}
+.receive-item{
+  display:flex;align-items:center;gap:10px;padding:11px 12px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  animation:slideIn .3s cubic-bezier(.2,.9,.3,1.1) both;
+}
+.download-btn{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--accent-soft);
+  border:1px solid var(--border);
+  color:var(--accent);cursor:pointer;
+  transition:transform .15s,background .2s;
+}
+.download-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+.download-btn:active{transform:scale(.9);background:var(--accent);color:var(--text-inv);}
+
+.receive-empty{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:8px;padding:30px 20px;text-align:center;
+  color:var(--text-dim);font-family:var(--font-body);
+  font-size:.85rem;font-style:italic;line-height:1.6;
+}
+.receive-empty small{
+  font-size:.72rem;opacity:.8;
+}
+.receive-empty code{
+  font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  font-size:.72rem;font-style:normal;
+  background:var(--surface-2);padding:1px 6px;border-radius:3px;
+  color:var(--text);
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.footer{
+  text-align:center;padding:8px 0 4px 0;
+  font-family:var(--font-body);font-style:italic;
+  font-size:.58rem;letter-spacing:.04em;
+  color:var(--text-inv);opacity:.55;
+  border-top:1px solid rgba(255,255,255,.06);
+  flex-shrink:0;
+}
+:root[data-theme="clouds"] .footer{color:var(--text);opacity:.5;border-top-color:rgba(26,26,26,.15);}
+
+.queue::-webkit-scrollbar,
+.done-list::-webkit-scrollbar,
+.receive-list::-webkit-scrollbar{width:3px;}
+.queue::-webkit-scrollbar-thumb,
+.done-list::-webkit-scrollbar-thumb,
+.receive-list::-webkit-scrollbar-thumb{background:var(--border-hi);border-radius:3px;}
+</style>
+</head>
+<body>
+
+<!-- ========== PIN GATE ========== -->
+<div class="pin-gate" id="pinGate">
+  <div class="logo">SEND88</div>
+  <div class="tag">local · offline · two-way</div>
+  <div class="pin-card">
+    <p>Enter the PIN shown on your PC.</p>
+    <input class="pin-input" id="pinInput" inputmode="numeric" maxlength="4" placeholder="••••" />
+    <div class="pin-error" id="pinError"></div>
+    <button class="pin-submit" id="pinSubmit">Connect</button>
+  </div>
+</div>
+
+<div class="app-container" id="appContainer">
+  <header class="header surface">
+    <div class="logo">SEND88</div>
+    <div class="header-right">
+      <div class="theme-switcher">
+        <button class="theme-dot" data-theme-pick="lilies" aria-label="Lilies theme"></button>
+        <button class="theme-dot" data-theme-pick="clouds" aria-label="Clouds theme"></button>
+        <button class="theme-dot" data-theme-pick="pastoral" aria-label="Pastoral theme"></button>
+      </div>
+      <div class="status-badge" id="statusBadge">
+        <div class="status-dot" id="statusDot"></div>
+        <span id="statusLabel">Connected</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <div class="tab active" data-tab="send">Send</div>
+    <div class="tab" data-tab="receive">Receive</div>
+  </nav>
+
+  <main>
+
+    <!-- ================= SEND PANEL ================= -->
+    <div class="tab-panel active" id="panelSend">
+
+      <!-- STAGE 1: PICK -->
+      <section class="stage active" id="stageIdle">
+        <div class="dropzone surface" id="dropzone">
+          <div class="drop-icon">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 19V5M5 12l7-7 7 7"/>
+            </svg>
+          </div>
+          <div class="drop-title">Choose files</div>
+          <div class="drop-sub">Photos, videos, documents — no size limit.</div>
+          <input type="file" id="fileInput" multiple hidden />
+        </div>
+        <div class="queue" id="queue"></div>
+        <button class="send-btn" id="sendBtn" disabled>Send</button>
+      </section>
+
+      <!-- STAGE 2: SENDING -->
+      <section class="stage" id="stageSending">
+        <div class="sending-wrap">
+          <div class="progress-ring" id="progressRing" style="--progress:0;">
+            <div class="inner">
+              <div class="pct"><span id="pctNum">0</span><span>%</span></div>
+              <div class="pct-label">Sending</div>
+            </div>
+          </div>
+          <div class="status-line" id="statusLine">Warming up the link…</div>
+          <div class="metrics">
+            <div class="metric"><div class="metric-label">Speed</div><div class="metric-value" id="speedVal">--</div></div>
+            <div class="metric"><div class="metric-label">Remaining</div><div class="metric-value" id="etaVal">--</div></div>
+            <div class="metric"><div class="metric-label">Sent</div><div class="metric-value" id="sentVal">--</div></div>
+          </div>
+          <div class="file-ticker" id="fileTicker"></div>
+        </div>
+      </section>
+
+      <!-- STAGE 3: DONE -->
+      <section class="stage" id="stageDone">
+        <div class="done-wrap">
+          <div class="success-burst">
+            <svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>
+          </div>
+          <div class="done-title">Delivered</div>
+          <div class="done-sub" id="doneSub">Your files arrived on the PC.</div>
+          <div class="done-list" id="doneList"></div>
+          <button class="send-btn" id="sendMoreBtn">Send more</button>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================= RECEIVE PANEL ================= -->
+    <div class="tab-panel" id="panelReceive">
+      <div class="receive-head surface">
+        <div>
+          <div class="label">From your PC</div>
+          <div class="sub">Files in the <em>shared</em> folder</div>
+        </div>
+        <button class="refresh-btn" id="refreshBtn" aria-label="Refresh">
+          <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
+        </button>
+      </div>
+      <div class="receive-list" id="receiveList"></div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    Copyright &copy; 2026 &middot; mohamed005cheikh@gmail.com &middot; by MC88
+  </footer>
+</div>
+
+<script>
+/* ============================================================
+   THEME
+============================================================ */
+const THEMES = ['lilies','clouds','pastoral'];
+let savedTheme = localStorage.getItem('send88-theme') || 'lilies';
+if (!THEMES.includes(savedTheme)) savedTheme = 'lilies';
+document.documentElement.setAttribute('data-theme', savedTheme);
+document.querySelectorAll('.theme-dot').forEach(dot => {
+  if (dot.dataset.themePick === savedTheme) dot.classList.add('active');
+  dot.addEventListener('click', () => {
+    const t = dot.dataset.themePick;
+    document.documentElement.setAttribute('data-theme', t);
+    localStorage.setItem('send88-theme', t);
+    document.querySelectorAll('.theme-dot').forEach(d => d.classList.toggle('active', d === dot));
+    vibrate(10);
+  });
+});
+
+/* ============================================================
+   STATE
+============================================================ */
+const SERVER_URL = window.location.origin;
+let AUTH_PIN = localStorage.getItem('send88-pin') || '';
+let selectedFiles = [];
+let pingFails = 0;
+
+const pinGate      = document.getElementById('pinGate');
+const appContainer = document.getElementById('appContainer');
+const statusBadge  = document.getElementById('statusBadge');
+const statusLabel  = document.getElementById('statusLabel');
+const dropzone     = document.getElementById('dropzone');
+const fileInput    = document.getElementById('fileInput');
+const queueEl      = document.getElementById('queue');
+const sendBtn      = document.getElementById('sendBtn');
+
+function vibrate(ms=15){ if (navigator.vibrate) navigator.vibrate(ms); }
+
+/* ============================================================
+   FORMATTERS
+============================================================ */
+function formatBytes(b){
+  if (b < 1024) return b + ' B';
+  if (b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
+  if (b < 1024*1024*1024) return (b/1024/1024).toFixed(2) + ' MB';
+  return (b/1024/1024/1024).toFixed(2) + ' GB';
+}
+function formatSpeed(bps){
+  if (!isFinite(bps) || bps <= 0) return '--';
+  return formatBytes(bps) + '/s';
+}
+function formatETA(seconds){
+  if (!isFinite(seconds) || seconds <= 0) return '--';
+  if (seconds < 60) return Math.ceil(seconds) + 's';
+  const m = Math.floor(seconds / 60), s = Math.round(seconds % 60);
+  if (m < 60) return `${m}m ${s}s`;
+  const h = Math.floor(m / 60);
+  return `${h}h ${m % 60}m`;
+}
+function extLabel(name){
+  const m = name.match(/\.([a-z0-9]{1,5})$/i);
+  return m ? m[1].toUpperCase() : 'FILE';
+}
+
+/* ============================================================
+   PIN GATE
+============================================================ */
+async function tryAuth(pin){
+  try{
+    const res = await fetch(`${SERVER_URL}/auth`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ pin })
+    });
+    const data = await res.json();
+    return !!(data && data.success);
+  }catch(_){ return false; }
+}
+async function enterApp(){
+  pinGate.classList.add('hidden');
+  appContainer.classList.add('show');
+  ping();
+  loadSharedFiles();
+}
+(async () => { if (AUTH_PIN && await tryAuth(AUTH_PIN)) enterApp(); })();
+
+document.getElementById('pinSubmit').addEventListener('click', submitPin);
+document.getElementById('pinInput').addEventListener('keydown', e => { if (e.key === 'Enter') submitPin(); });
+async function submitPin(){
+  const val = document.getElementById('pinInput').value.trim();
+  if (!val) return;
+  const ok = await tryAuth(val);
+  if (ok){
+    AUTH_PIN = val;
+    localStorage.setItem('send88-pin', val);
+    document.getElementById('pinError').textContent = '';
+    enterApp();
+  } else {
+    document.getElementById('pinError').textContent = 'Wrong PIN — check the PC console.';
+    vibrate(40);
+  }
+}
+
+/* ============================================================
+   CONNECTION STATUS
+============================================================ */
+function setConnected(ok){
+  if (ok){
+    pingFails = 0;
+    statusBadge.classList.remove('disconnected');
+    statusLabel.textContent = 'Connected';
+  } else {
+    pingFails++;
+    if (pingFails >= 2){
+      statusBadge.classList.add('disconnected');
+      statusLabel.textContent = 'Disconnected';
+    }
+  }
+}
+async function ping(){
+  try{
+    const r = await fetch(`${SERVER_URL}/ping`, { signal: AbortSignal.timeout(1500) });
+    setConnected(r.ok);
+  }catch(_){ setConnected(false); }
+}
+setInterval(()=>{ if (appContainer.classList.contains('show')) ping(); }, 5000);
+
+/* ============================================================
+   TABS
+============================================================ */
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel' + tab.dataset.tab.charAt(0).toUpperCase() + tab.dataset.tab.slice(1)).classList.add('active');
+    vibrate(10);
+    if (tab.dataset.tab === 'receive') loadSharedFiles();
+  });
+});
+
+/* ============================================================
+   STAGES (Send flow)
+============================================================ */
+function showStage(id){
+  document.querySelectorAll('#panelSend .stage').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+/* ============================================================
+   FILE PICKING
+============================================================ */
+dropzone.addEventListener('click', () => fileInput.click());
+fileInput.addEventListener('change', e => {
+  addFiles(Array.from(e.target.files || []));
+  fileInput.value = '';
+});
+['dragover','dragenter'].forEach(ev => dropzone.addEventListener(ev, e => e.preventDefault()));
+dropzone.addEventListener('drop', e => {
+  e.preventDefault();
+  addFiles(Array.from(e.dataTransfer.files || []));
+});
+
+function addFiles(files){
+  if (!files.length) return;
+  for (const f of files) selectedFiles.push({ file: f, id: Math.random().toString(36).slice(2) });
+  renderQueue();
+  vibrate(15);
+}
+
+function renderQueue(){
+  queueEl.innerHTML = '';
+  selectedFiles.forEach(item => {
+    const f = item.file;
+    const el = document.createElement('div');
+    el.className = 'file-item';
+    el.innerHTML = `
+      <div class="file-icon">${extLabel(f.name)}</div>
+      <div class="file-info">
+        <div class="file-name"></div>
+        <div class="file-size">${formatBytes(f.size)}</div>
+      </div>
+      <div class="file-remove" data-id="${item.id}">×</div>`;
+    el.querySelector('.file-name').textContent = f.name;
+    queueEl.appendChild(el);
+  });
+
+  queueEl.querySelectorAll('.file-remove').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const id = btn.dataset.id;
+      const parent = btn.closest('.file-item');
+      parent.classList.add('removing');
+      setTimeout(() => {
+        selectedFiles = selectedFiles.filter(x => x.id !== id);
+        renderQueue();
+      }, 200);
+      vibrate(20);
+    });
+  });
+
+  const totalSize = selectedFiles.reduce((a, x) => a + x.file.size, 0);
+  if (selectedFiles.length === 0){
+    sendBtn.disabled = true;
+    sendBtn.textContent = 'Send';
+  } else {
+    sendBtn.disabled = false;
+    const n = selectedFiles.length;
+    sendBtn.textContent = `Send ${n} file${n > 1 ? 's' : ''} · ${formatBytes(totalSize)}`;
+  }
+}
+
+/* ============================================================
+   UPLOAD (Phone -> PC)
+============================================================ */
+sendBtn.addEventListener('click', () => {
+  if (!selectedFiles.length) return;
+  vibrate(25);
+  startUpload(selectedFiles.map(x => x.file));
+});
+
+const STATUS_MESSAGES = [
+  { max: 5,   text: 'Warming up the link…' },
+  { max: 15,  text: 'Opening the channel…' },
+  { max: 40,  text: 'Sending your files…' },
+  { max: 70,  text: 'Streaming through the air…' },
+  { max: 90,  text: 'Almost there…' },
+  { max: 99,  text: 'Just a moment more…' },
+  { max: 101, text: 'Wrapping things up…' },
+];
+function statusFor(pct){
+  for (const s of STATUS_MESSAGES) if (pct < s.max) return s.text;
+  return STATUS_MESSAGES[STATUS_MESSAGES.length - 1].text;
+}
+
+function startUpload(files){
+  showStage('stageSending');
+  document.getElementById('pctNum').textContent = '0';
+  document.getElementById('progressRing').style.setProperty('--progress', 0);
+  document.getElementById('statusLine').textContent = STATUS_MESSAGES[0].text;
+  document.getElementById('speedVal').textContent = '--';
+  document.getElementById('etaVal').textContent = '--';
+  document.getElementById('sentVal').textContent = '--';
+  document.getElementById('fileTicker').innerHTML = '';
+
+  const ticker = document.getElementById('fileTicker');
+  files.slice(0, 4).forEach(f => {
+    const d = document.createElement('div');
+    d.className = 'ticker-line';
+    d.textContent = `· ${f.name}`;
+    ticker.appendChild(d);
+  });
+  if (files.length > 4){
+    const d = document.createElement('div');
+    d.className = 'ticker-line';
+    d.textContent = `… and ${files.length - 4} more`;
+    ticker.appendChild(d);
+  }
+
+  const fd = new FormData();
+  for (const f of files) fd.append('files', f);
+
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', `${SERVER_URL}/upload`);
+  xhr.setRequestHeader('X-Auth-Pin', AUTH_PIN);
+
+  let lastLoaded = 0;
+  let lastTime = performance.now();
+  const speedSamples = [];
+
+  xhr.upload.onprogress = (e) => {
+    if (!e.lengthComputable) return;
+    const now = performance.now();
+    const dt = (now - lastTime) / 1000;
+    if (dt > 0.25){
+      const dBytes = e.loaded - lastLoaded;
+      const inst = dBytes / dt;
+      speedSamples.push({ t: now, s: inst });
+      while (speedSamples.length && now - speedSamples[0].t > 3000) speedSamples.shift();
+      lastLoaded = e.loaded;
+      lastTime = now;
+    }
+    const avgSpeed = speedSamples.length
+      ? speedSamples.reduce((a, b) => a + b.s, 0) / speedSamples.length
+      : 0;
+    const pct = (e.loaded / e.total) * 100;
+    const remainingBytes = e.total - e.loaded;
+    const eta = avgSpeed > 0 ? remainingBytes / avgSpeed : Infinity;
+
+    document.getElementById('pctNum').textContent = Math.floor(pct);
+    document.getElementById('progressRing').style.setProperty('--progress', pct);
+    document.getElementById('statusLine').textContent = statusFor(pct);
+    document.getElementById('speedVal').textContent = formatSpeed(avgSpeed);
+    document.getElementById('etaVal').textContent = formatETA(eta);
+    document.getElementById('sentVal').textContent = formatBytes(e.loaded);
+  };
+
+  xhr.onload = () => {
+    if (xhr.status === 200){
+      let parsed = {};
+      try { parsed = JSON.parse(xhr.responseText); } catch(_){}
+      finishUpload(parsed.files || []);
+    } else if (xhr.status === 401){
+      localStorage.removeItem('send88-pin');
+      location.reload();
+    } else {
+      failUpload();
+    }
+  };
+  xhr.onerror = failUpload;
+  xhr.send(fd);
+}
+
+function failUpload(){
+  document.getElementById('statusLine').textContent = 'Connection lost — try again.';
+  vibrate([40,60,40]);
+  setTimeout(() => showStage('stageIdle'), 1800);
+}
+
+function finishUpload(received){
+  showStage('stageDone');
+  vibrate([15,40,15,40,15]);
+
+  const list = document.getElementById('doneList');
+  list.innerHTML = '';
+  const n = received.length;
+  document.getElementById('doneSub').textContent =
+    n === 1 ? 'Your file arrived on the PC.' : `All ${n} files arrived on the PC.`;
+
+  received.forEach(f => {
+    const row = document.createElement('div');
+    row.className = 'done-item';
+    row.innerHTML = `<span class="tick">✓</span><span class="name"></span><span class="sz">${formatBytes(f.size)}</span>`;
+    row.querySelector('.name').textContent = f.name;
+    list.appendChild(row);
+  });
+
+  selectedFiles = [];
+  renderQueue();
+}
+
+document.getElementById('sendMoreBtn').addEventListener('click', () => {
+  vibrate(15);
+  showStage('stageIdle');
+});
+
+/* ============================================================
+   RECEIVE (PC -> Phone)
+============================================================ */
+const receiveList = document.getElementById('receiveList');
+const refreshBtn  = document.getElementById('refreshBtn');
+
+async function loadSharedFiles(){
+  refreshBtn.classList.add('spinning');
+  setTimeout(() => refreshBtn.classList.remove('spinning'), 400);
+  try{
+    const res = await fetch(`${SERVER_URL}/list-shared`, {
+      headers: { 'X-Auth-Pin': AUTH_PIN }
+    });
+    if (res.status === 401){
+      localStorage.removeItem('send88-pin');
+      location.reload();
+      return;
+    }
+    const data = await res.json();
+    renderShared(data.files || []);
+  }catch(_){
+    renderShared([]);
+  }
+}
+
+function renderShared(files){
+  receiveList.innerHTML = '';
+  if (!files.length){
+    const empty = document.createElement('div');
+    empty.className = 'receive-empty';
+    empty.innerHTML = 'No files shared from the PC yet.<br><small>Drop files into the <code>shared/</code> folder on your PC, then tap refresh.</small>';
+    receiveList.appendChild(empty);
+    return;
+  }
+  files.forEach(f => {
+    const row = document.createElement('div');
+    row.className = 'receive-item';
+    row.innerHTML = `
+      <div class="file-icon">${extLabel(f.name)}</div>
+      <div class="file-info">
+        <div class="file-name"></div>
+        <div class="file-size">${formatBytes(f.size)}</div>
+      </div>
+      <div class="download-btn" aria-label="Download">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </div>`;
+    row.querySelector('.file-name').textContent = f.name;
+    row.querySelector('.download-btn').addEventListener('click', () => downloadFile(f.name));
+    receiveList.appendChild(row);
+  });
+}
+
+function downloadFile(name){
+  vibrate(20);
+  const url = `${SERVER_URL}/download/${encodeURIComponent(name)}?pin=${encodeURIComponent(AUTH_PIN)}`;
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = name;
+  a.rel = 'noopener';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+refreshBtn.addEventListener('click', () => { vibrate(10); loadSharedFiles(); });
+</script>
+</body>
+</html>
